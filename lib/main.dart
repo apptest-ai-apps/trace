@@ -61,6 +61,8 @@ Future<Null> getMarketData() async {
 }
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   await getApplicationDocumentsDirectory().then((Directory directory) async {
     File jsonFile = new File(directory.path + "/portfolio.json");
     if (jsonFile.existsSync()) {
@@ -92,7 +94,7 @@ void main() async {
     themeMode = prefs.getString("themeMode");
     darkOLED = prefs.getBool("darkOLED");
   }
-
+  
   runApp(new TraceApp(themeMode, darkOLED));
 }
 
