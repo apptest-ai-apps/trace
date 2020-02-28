@@ -40,7 +40,7 @@ jobs:
         pod install
         fastlane beta
     - name: Test app on apptest.ai
-      uses: forcemax/apptestai-test@v2
+      uses: forcemax/apptestai-test@v1
       with:
         access_key: ${{ secrets.APPTEST_AI_ACCESS_KEY }}
         project_id: 1106
