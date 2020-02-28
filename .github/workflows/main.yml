@@ -35,7 +35,7 @@ jobs:
       run: |
         flutter build apk --release
     - name: Test app on apptest.ai
-      uses: forcemax/apptestai-test@v1
+      uses: forcemax/apptestai-test@v2
       with:
         access_key: ${{ secrets.APPTEST_AI_ACCESS_KEY }}
         project_id: 1107
