@@ -26,6 +26,11 @@ jobs:
         echo "keyAlias=${ALIAS}" >> android/key.properties
         echo "keyPassword=${KEY_PASSWORD}" >> android/key.properties
       displayName: create android keystore
+      env:
+        SIGNING_KEY: $(SIGNING_KEY)
+        KEY_STORE_PASSWORD: $(KEY_STORE_PASSWORD)
+        ALIAS: $(ALIAS)
+        KEY_PASSWORD: $(KEY_PASSWORD)
     - bash: |
         flutter/bin/flutter build apk --release
       displayName: build
@@ -47,3 +52,12 @@ jobs:
         fastlane beta
       displayName: build
       workingDirectory: ./ios
+      env:
+        APPLE_ID: $(APPLE_ID)
+        TEAM_ID: $(TEAM_ID)
+        APP_BUNDLE_ID: $(APP_BUNDLE_ID)
+        MATCH_PASSWORD: $(MATCH_PASSWORD)
+        FASTLANE_CERT_REPO: $(FASTLANE_CERT_REPO)
+        MATCH_GIT_BASIC_AUTHORIZATION: $(MATCH_GIT_BASIC_AUTHORIZATION)
+        MATCH_KEYCHAIN_NAME: $(MATCH_KEYCHAIN_NAME)
+        MATCH_KEYCHAIN_PASSWORD: $(MATCH_KEYCHAIN_PASSWORD)
