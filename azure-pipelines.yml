@@ -16,9 +16,19 @@ jobs:
         channel: 'stable'
         version: 'custom'
         customVersion: '1.12.13+hotfix.7'
-    - script: |
+    - bash: |
         flutter pub get
-
+      displayName: flutter package get
+    - bash: |
+        CURPWD=$(pwd)
+        echo "${SIGNING_KEY}" | base64 --decode > keystore.jks
+        echo "storeFile=${CURPWD}/keystore.jks" > android/key.properties
+        echo "storePassword=${KEY_STORE_PASSWORD}" >> android/key.properties
+        echo "keyAlias=${ALIAS}" >> android/key.properties
+        echo "keyPassword=${KEY_PASSWORD}" >> android/key.properties
+    - task: FlutterBuild@0
+      inputs:
+        target: 'apk'
 
   - job: build_ios
     pool:
@@ -29,3 +39,9 @@ jobs:
         channel: 'stable'
         version: 'custom'
         customVersion: '1.12.13+hotfix.7'
+    - bash: |
+        flutter pub get
+      displayName: flutter package get
+    - bash: |
+        pod install
+        fastlane beta
