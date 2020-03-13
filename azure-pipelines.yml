@@ -13,7 +13,7 @@ jobs:
     steps:
     - bash: |
         curl -o flutter.tar.xz https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v1.12.13+hotfix.7-stable.tar.xz
-        tar zxvf flutter.tar.gz
+        tar zxvf flutter.tar.xz
       displayName: install flutter
     - bash: |
         flutter/bin/flutter pub get
