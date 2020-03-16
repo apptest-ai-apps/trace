@@ -1,4 +1,5 @@
 # Starter pipeline
+
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
@@ -34,7 +35,12 @@ jobs:
     - bash: |
         flutter/bin/flutter build apk --release
       displayName: build
-
+    - task: apptestai-test@0
+      inputs:
+        access_key: '$(APPTEST_AI_ACCESS_KEY)'
+        project_id: '1107'
+        binary_path: 'build/app/outputs/apk/release/app-release.apk'
+  
   - job: build_ios
     pool:
       vmImage: 'macOS-latest'
@@ -61,3 +67,8 @@ jobs:
         MATCH_GIT_BASIC_AUTHORIZATION: $(MATCH_GIT_BASIC_AUTHORIZATION)
         MATCH_KEYCHAIN_NAME: $(MATCH_KEYCHAIN_NAME)
         MATCH_KEYCHAIN_PASSWORD: $(MATCH_KEYCHAIN_PASSWORD)
+    - task: apptestai-test@0
+      inputs:
+        access_key: '$(APPTEST_AI_ACCESS_KEY)'
+        project_id: '1106'
+        binary_path: 'build/app/outputs/apk/release/app-release.apk'
