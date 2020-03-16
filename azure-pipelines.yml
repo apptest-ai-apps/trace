@@ -71,4 +71,4 @@ jobs:
       inputs:
         access_key: '$(APPTEST_AI_ACCESS_KEY)'
         project_id: '1106'
-        binary_path: 'build/app/outputs/apk/release/app-release.apk'
+        binary_path: 'ios/Runner.ipa'
